@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  don_gia: one
+  soluong: 1.5
+  ngay: 2018-10-02
+  note: MyString
+
+two:
+  don_gia: two
+  soluong: 1.5
+  ngay: 2018-10-02
+  note: MyString

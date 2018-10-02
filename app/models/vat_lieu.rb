@@ -1,0 +1,2 @@
+class VatLieu < ApplicationRecord
+end
