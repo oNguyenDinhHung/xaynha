@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% {
+        'Home' => root_path,
+        'Vật liệu' => vat_lieus_path,
+        'Nhà cung cấp' => nha_cung_caps_path,
+        'Đơn giá' => don_gias_path,
+        'Chi' => chis_path
+      }.each do |k, v| %>
+        <% if request.path == v %>
+          <li class="nav-item active">
+            <%= link_to k, v, class: 'nav-link' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to k, v, class: 'nav-link' %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</nav>

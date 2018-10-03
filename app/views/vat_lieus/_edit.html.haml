@@ -1,0 +1,18 @@
+.modal#vat_lieu-edit-modal{tabindex:-1, role: :dialog, 'aria-labelledby'=>"myModalLabel", 'aria-hidden'=>"true"}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %h4.modal-title#myModalLabel Sửa vật liệu
+        %button.close{type: :button, 'data-dismiss'=>"modal", 'aria-hidden'=>"true"} &times;
+      .modal-body
+        = simple_form_for :vat_lieu, url: vat_lieu_path(id: 0), method: :patch, :remote => true, html: { id: 'edit_vat_lieu', role: :form, 'data-model' => 'vat_lieu'} do |f|
+          = f.input :id, as: :hidden
+          = f.input :ten, label: 'Tên' do
+            = f.input_field :ten, readonly: true, class: 'form-control'
+            .span.help-block
+          = f.input :loai, label: 'Loại' do
+            = f.input_field :loai, class: 'form-control'
+            .span.help-block
+          = f.input :note, label: 'Ghi chú' do
+            = f.input_field :note, class: 'form-control'
+          = f.button :submit, 'Cập nhật', class: 'btn btn-warning'
