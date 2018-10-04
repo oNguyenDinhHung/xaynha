@@ -1,0 +1,23 @@
+.modal#don_gium-new-modal{tabindex:-1, role: :dialog, 'aria-labelledby'=>"myModalLabel", 'aria-hidden'=>"true"}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %h4.modal-title#myModalLabel Tạo đơn giá mới
+        %button.close{type: :button, 'data-dismiss'=>"modal", 'aria-hidden'=>"true"} &times;
+      .modal-body
+        = simple_form_for :don_gium, url: don_giums_path, method: :post, :remote => true, html: { id: 'new_don_gium', role: :form, 'data-model' => 'don_gium'} do |f|
+          = f.input :vat_lieu_id, label: 'Vật liệu' do
+            = f.input_field :vat_lieu_id, collection: VatLieu.pluck(:ten, :id), class: 'form-control'
+            .span.help-block
+          = f.input :nha_cung_cap_id, label: 'Nhà cung cấp' do
+            = f.input_field :nha_cung_cap_id, collection: NhaCungCap.pluck(:ten, :id), class: 'form-control'
+            .span.help-block
+          = f.input :gia, label: 'Giá' do
+            = f.input_field :gia, as: :float, class: 'form-control'
+            .span.help-block
+          = f.input :donvi, label: 'Đơn vị' do
+            = f.input_field :donvi, class: 'form-control'
+            .span.help-block
+          = f.input :note, label: 'Ghi chú' do
+            = f.input_field :note, class: 'form-control'
+          = f.button :submit, 'Tạo', class: 'btn btn-success'

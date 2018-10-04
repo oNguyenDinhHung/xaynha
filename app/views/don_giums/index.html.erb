@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-lg-10 offset-lg-1">
+    <table id='don_gium' class='table-striped table-bordered table-hover' cellspacing= '0' width= '100%'>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th></th>
+          <th>Vật liệu</th>
+          <th></th>
+          <th>Nhà cung cấp</th>
+          <th>Giá</th>
+          <th>Đơn vị</th>
+          <th>Ghi chú</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @don_giums.each do |don_gium| %>
+          <tr id="don_gium_<%= don_gium.id %>">
+            <% DonGium::SHOW_ATTRS.each.each do |attr| %>
+              <td><%= don_gium.send(attr)%></td>
+            <% end %>
+            <td><%= link_to_edit(don_gium)%></td>
+            <td><%= link_to_delete(don_gium)%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= render 'new' %>
+    <%= render 'edit' %>
+  </div>
+</div>
