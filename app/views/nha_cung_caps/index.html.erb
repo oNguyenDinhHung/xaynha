@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-lg-10 offset-lg-1">
+    <table id='nha_cung_cap' class='table-striped table-bordered table-hover' cellspacing= '0' width= '100%'>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Tên</th>
+          <th>Số điện thoại</th>
+          <th>Ghi chú</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @nha_cung_caps %>
+      </tbody>
+    </table>
+    <%= render 'new' %>
+    <%= render 'edit' %>
+  </div>
+</div>

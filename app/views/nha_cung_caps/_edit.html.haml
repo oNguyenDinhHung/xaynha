@@ -1,0 +1,18 @@
+.modal#nha_cung_cap-edit-modal{tabindex:-1, role: :dialog, 'aria-labelledby'=>"myModalLabel", 'aria-hidden'=>"true"}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %h4.modal-title#myModalLabel Sửa nhà cung cấp
+        %button.close{type: :button, 'data-dismiss'=>"modal", 'aria-hidden'=>"true"} &times;
+      .modal-body
+        = simple_form_for :nha_cung_cap, url: nha_cung_cap_path(id: 0), method: :patch, :remote => true, html: { id: 'edit_nha_cung_cap', role: :form, 'data-model' => 'nha_cung_cap'} do |f|
+          = f.input :id, as: :hidden
+          = f.input :ten, label: 'Tên' do
+            = f.input_field :ten, readonly: true, class: 'form-control'
+            .span.help-block
+          = f.input :sodienthoai, label: 'Số điện thoại' do
+            = f.input_field :sodienthoai, class: 'form-control'
+            .span.help-block
+          = f.input :note, label: 'Ghi chú' do
+            = f.input_field :note, class: 'form-control'
+          = f.button :submit, 'Cập nhật', class: 'btn btn-warning'
