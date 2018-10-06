@@ -10,10 +10,10 @@
         'Home' => root_path,
         'Vật liệu' => vat_lieus_path,
         'Nhà cung cấp' => nha_cung_caps_path,
-        'Đơn giá' => don_giums_path,
-        'Chi' => chis_path
+        'Hóa đơn' => hoa_dons_path,
+        'Danh sách hàng' => hangs_path
       }.each do |k, v| %>
-        <% if request.path == v %>
+        <% if request.path.include? v %>
           <li class="nav-item active">
             <%= link_to k, v, class: 'nav-link' %>
           </li>

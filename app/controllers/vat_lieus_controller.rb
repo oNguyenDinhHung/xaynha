@@ -32,6 +32,6 @@ class VatLieusController < ApplicationController
   private
 
     def vat_lieu_params
-      params.require(:vat_lieu).permit(:ten, :loai, :note)
+      params.require(:vat_lieu).permit(:ten, :loai, :donvi, :note)
     end
 end

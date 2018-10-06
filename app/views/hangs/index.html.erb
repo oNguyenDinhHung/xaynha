@@ -1,19 +1,21 @@
 <div class="row">
   <div class="col-lg-10 offset-lg-1">
-    <table id='vat_lieu' class='table-striped table-bordered table-hover' cellspacing= '0' width= '100%'>
+    <table id='hang' class='table-striped table-bordered table-hover' cellspacing= '0' width= '100%'>
       <thead>
         <tr>
           <th>Id</th>
-          <th>Tên</th>
-          <th>Loại</th>
-          <th>Đơn vị</th>
+          <th>Hóa đơn</th>
+          <th></th>
+          <th>Vật liệu</th>
+          <th>Giá</th>
+          <th>Số lượng</th>
           <th>Ghi chú</th>
           <th></th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <%= render @vat_lieus %>
+        <%= render @hangs %>
       </tbody>
     </table>
     <%= render 'new' %>

@@ -1,0 +1,26 @@
+.modal#hang-new-modal{tabindex:-1, role: :dialog, 'aria-labelledby'=>"myModalLabel", 'aria-hidden'=>"true"}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %h4.modal-title#myModalLabel Tạo hàng mới
+        %button.close{type: :button, 'data-dismiss'=>"modal", 'aria-hidden'=>"true"} &times;
+      .modal-body
+        = simple_form_for :hang, url: hangs_path, method: :post, :remote => true, html: { id: 'new_hang', role: :form, 'data-model' => 'hang'} do |f|
+          - if params[:id]
+            = f.input_field :hoa_don_id, value: params[:id], as: :hidden
+          - else
+            = f.input :hoa_don_id do
+              = f.input_field :hoa_don_id, collection: HoaDon.pluck(:id), class: 'form-control'
+              .span.help-block
+          = f.input :vat_lieu_id, label: 'Vật liệu' do
+            = f.input_field :vat_lieu_id, collection: VatLieu.pluck(:ten, :id), class: 'form-control'
+            .span.help-block
+          = f.input :gia, label: 'Giá' do
+            = f.input_field :gia, as: :float, class: 'form-control'
+            .span.help-block
+          = f.input :so_luong, label: 'Số lượng' do
+            = f.input_field :so_luong, as: :float, class: 'form-control'
+            .span.help-block
+          = f.input :note, label: 'Ghi chú' do
+            = f.input_field :note, class: 'form-control'
+          = f.button :submit, 'Tạo', class: 'btn btn-success'

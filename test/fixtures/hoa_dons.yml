@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ngay: 2018-10-06
+  nha_cung_cap: one
+  nguoi_ki: MyString
+  thanh_toan: 1.5
+  so_du: 1.5
+  file: MyString
+  note: MyString
+
+two:
+  ngay: 2018-10-06
+  nha_cung_cap: two
+  nguoi_ki: MyString
+  thanh_toan: 1.5
+  so_du: 1.5
+  file: MyString
+  note: MyString

@@ -4,6 +4,7 @@ class CreateVatLieus < ActiveRecord::Migration[5.2]
       t.string :ten
       t.string :loai
       t.string :note
+      t.string :donvi
 
       t.timestamps
     end

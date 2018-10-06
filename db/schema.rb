@@ -10,28 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_02_160829) do
+ActiveRecord::Schema.define(version: 2018_10_06_144848) do
 
-  create_table "chis", force: :cascade do |t|
-    t.integer "don_gia_id"
-    t.float "soluong"
-    t.date "ngay"
+  create_table "hangs", force: :cascade do |t|
+    t.integer "hoa_don_id"
+    t.integer "vat_lieu_id"
+    t.float "gia"
+    t.float "so_luong"
     t.string "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["don_gia_id"], name: "index_chis_on_don_gia_id"
+    t.index ["hoa_don_id"], name: "index_hangs_on_hoa_don_id"
+    t.index ["vat_lieu_id"], name: "index_hangs_on_vat_lieu_id"
   end
 
-  create_table "don_gia", force: :cascade do |t|
-    t.integer "vat_lieu_id"
+  create_table "hoa_dons", force: :cascade do |t|
+    t.date "ngay"
     t.integer "nha_cung_cap_id"
-    t.float "gia"
-    t.string "donvi"
+    t.string "nguoi_ki"
+    t.float "thanh_toan"
+    t.float "so_du"
+    t.string "file"
     t.string "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["nha_cung_cap_id"], name: "index_don_gia_on_nha_cung_cap_id"
-    t.index ["vat_lieu_id"], name: "index_don_gia_on_vat_lieu_id"
+    t.index ["nha_cung_cap_id"], name: "index_hoa_dons_on_nha_cung_cap_id"
   end
 
   create_table "nha_cung_caps", force: :cascade do |t|
@@ -46,6 +49,7 @@ ActiveRecord::Schema.define(version: 2018_10_02_160829) do
     t.string "ten"
     t.string "loai"
     t.string "note"
+    t.string "donvi"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

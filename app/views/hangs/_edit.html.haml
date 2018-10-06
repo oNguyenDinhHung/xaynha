@@ -1,0 +1,21 @@
+.modal#hang-edit-modal{tabindex:-1, role: :dialog, 'aria-labelledby'=>"myModalLabel", 'aria-hidden'=>"true"}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %h4.modal-title#myModalLabel Sửa hàng
+        %button.close{type: :button, 'data-dismiss'=>"modal", 'aria-hidden'=>"true"} &times;
+      .modal-body
+        = simple_form_for :hang, url: hang_path(id: 0), method: :patch, :remote => true, html: { id: 'edit_hang', role: :form, 'data-model' => 'hang'} do |f|
+          = f.input :hoa_don_id, as: :hidden
+          = f.input :vat_lieu_id, label: 'Vật liệu' do
+            = f.input_field :vat_lieu_id, collection: VatLieu.pluck(:ten, :id), class: 'form-control', disabled: true
+            .span.help-block
+          = f.input :gia, label: 'Giá' do
+            = f.input_field :gia, as: :float, class: 'form-control'
+            .span.help-block
+          = f.input :so_luong, label: 'Số lượng' do
+            = f.input_field :so_luong, as: :float, class: 'form-control'
+            .span.help-block
+          = f.input :note, label: 'Ghi chú' do
+            = f.input_field :note, class: 'form-control'
+          = f.button :submit, 'Cập nhật', class: 'btn btn-warning'

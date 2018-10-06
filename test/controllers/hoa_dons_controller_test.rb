@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DonGiumTest < ActiveSupport::TestCase
+class HoaDonsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

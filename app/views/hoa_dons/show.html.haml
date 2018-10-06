@@ -1,0 +1,39 @@
+.row
+  .col-lg-8.offset-lg-2
+    %table.table-bordered{ width: '100%' }
+      %thead
+        %tr
+          %th Nhà cung cấp
+          %th Người kí
+          %th Ngày
+          %th Thanh toán
+          %th Số dư
+          %th Ghi chú
+      %tbody
+        %tr
+          %td= @hoa_don.nha_cung_cap.ten
+          %td= @hoa_don.nguoi_ki
+          %td= @hoa_don.ngay.strftime('%d/%m/%Y')
+          %td= @hoa_don.thanh_toan
+          %td= @hoa_don.so_du
+          %td= @hoa_don.note
+
+.row{style: 'margin-top: 50px'}
+  .col-lg-10.offset-lg-1
+    %h1 DANH SÁCH HÀNG
+    %table#hang.table-striped.table-bordered.table-hover{:cellspacing => "0", :width => "100%"}
+      %thead
+        %tr
+          %th Id
+          %th Hóa đơn
+          %th
+          %th Vật liệu
+          %th Giá
+          %th Số lượng
+          %th Ghi chú
+          %th
+          %th
+      %tbody
+        = render @hoa_don.hangs
+    = render 'hangs/new'
+    = render 'hangs/edit'

@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  don_gia: one
-  soluong: 1.5
-  ngay: 2018-10-02
+  hoa_don: one
+  vat_lieu: one
+  gia: 1.5
+  so_luong: 1.5
   note: MyString
 
 two:
-  don_gia: two
-  soluong: 1.5
-  ngay: 2018-10-02
+  hoa_don: two
+  vat_lieu: two
+  gia: 1.5
+  so_luong: 1.5
   note: MyString

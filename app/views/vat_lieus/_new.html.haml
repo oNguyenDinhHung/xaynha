@@ -12,6 +12,9 @@
           = f.input :loai, label: 'Loại' do
             = f.input_field :loai, class: 'form-control'
             .span.help-block
+          = f.input :donvi, label: 'Đơn vị' do
+            = f.input_field :donvi, class: 'form-control'
+            .span.help-block
           = f.input :note, label: 'Ghi chú' do
             = f.input_field :note, class: 'form-control'
           = f.button :submit, 'Tạo', class: 'btn btn-success'

@@ -1,0 +1,26 @@
+.modal#hoa_don-new-modal{tabindex:-1, role: :dialog, 'aria-labelledby'=>"myModalLabel", 'aria-hidden'=>"true"}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %h4.modal-title#myModalLabel Tạo hóa đơn mới
+        %button.close{type: :button, 'data-dismiss'=>"modal", 'aria-hidden'=>"true"} &times;
+      .modal-body
+        = simple_form_for :hoa_don, url: hoa_dons_path, method: :post, :remote => true, html: { id: 'new_hoa_don', role: :form, 'data-model' => 'hoa_don'} do |f|
+          = f.input :ngay, label: 'Ngày' do
+            = f.input_field :ngay, as: :date, class: 'form-control'
+            .span.help-block
+          = f.input :nha_cung_cap_id, label: 'Nhà cung cấp' do
+            = f.input_field :nha_cung_cap_id, collection: NhaCungCap.pluck(:ten, :id), class: 'form-control'
+            .span.help-block
+          = f.input :nguoi_ki, label: 'Người kí' do
+            = f.input_field :nguoi_ki, collection: HoaDon::NGUOI_KIS, class: 'form-control'
+            .span.help-block
+          = f.input :thanh_toan, label: 'Thanh toán' do
+            = f.input_field :thanh_toan, as: :float, class: 'form-control'
+            .span.help-block
+          = f.input :so_du, label: 'Số dư' do
+            = f.input_field :so_du, as: :float, class: 'form-control'
+            .span.help-block
+          = f.input :note, label: 'Ghi chú' do
+            = f.input_field :note, class: 'form-control'
+          = f.button :submit, 'Tạo', class: 'btn btn-success'
