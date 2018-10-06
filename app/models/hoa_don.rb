@@ -1,4 +1,5 @@
 class HoaDon < ApplicationRecord
+  mount_uploader :file, HoadonUploader
 	has_many :hangs, dependent: :destroy
   belongs_to :nha_cung_cap
   NGUOI_KIS = %w(Bố Mẹ Hùng Hân Ông)

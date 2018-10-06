@@ -36,6 +36,6 @@ class HoaDonsController < ApplicationController
   private
 
     def hoa_don_params
-      params.require(:hoa_don).permit(:ngay, :nha_cung_cap_id, :nguoi_ki, :thanh_toan, :so_du, :note)
+      params.require(:hoa_don).permit(:ngay, :nha_cung_cap_id, :nguoi_ki, :thanh_toan, :so_du, :note, :file)
     end
 end

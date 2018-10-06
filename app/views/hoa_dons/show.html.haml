@@ -17,6 +17,10 @@
           %td= @hoa_don.thanh_toan
           %td= @hoa_don.so_du
           %td= @hoa_don.note
+  -if @hoa_don.file?    
+    %button#button_anh.btn.btn-primary Ẩn/HiệnẢnh
+    #picture{ align: 'center', style: 'display: none' }
+      = image_tag @hoa_don.file.url
 
 .row{style: 'margin-top: 50px'}
   .col-lg-10.offset-lg-1

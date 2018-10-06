@@ -23,4 +23,6 @@
             .span.help-block
           = f.input :note, label: 'Ghi chú' do
             = f.input_field :note, class: 'form-control'
+          = f.input :file, label: 'Ảnh' do
+            = f.input_field :file, as: :file, class: 'form-control'
           = f.button :submit, 'Tạo', class: 'btn btn-success'

@@ -37,3 +37,6 @@ $(document).on 'turbolinks:load',()->
     $('.form-group.has-error').each ()->
       $('.help-block', $(this)).html('')
       $(this).removeClass('has-error')
+
+  $('#button_anh').click ->
+    $('#picture').toggle()
