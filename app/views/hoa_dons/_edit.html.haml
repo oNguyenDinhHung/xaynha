@@ -6,8 +6,8 @@
         %button.close{type: :button, 'data-dismiss'=>"modal", 'aria-hidden'=>"true"} &times;
       .modal-body
         = simple_form_for :hoa_don, url: hoa_don_path(id: 0), method: :patch, :remote => true, html: { id: 'edit_hoa_don', role: :form, 'data-model' => 'hoa_don'} do |f|
-          = f.input :ngay, label: 'Ngày' do
-            = f.input_field :ngay, as: :date, readonly: true, class: 'form-control'
+          = f.input :thoi_gian, label: 'Thời gian' do
+            = f.input_field :thoi_gian, as: :datetime, readonly: true, class: 'form-control'
             .span.help-block
           = f.input :nha_cung_cap_id, label: 'Nhà cung cấp' do
             = f.input_field :nha_cung_cap_id, collection: NhaCungCap.pluck(:ten, :id), readonly: true, class: 'form-control'
@@ -17,9 +17,6 @@
             .span.help-block
           = f.input :thanh_toan, label: 'Thanh toán' do
             = f.input_field :thanh_toan, as: :float, class: 'form-control'
-            .span.help-block
-          = f.input :so_du, label: 'Số dư' do
-            = f.input_field :so_du, as: :float, class: 'form-control'
             .span.help-block
           = f.input :note, label: 'Ghi chú' do
             = f.input_field :note, class: 'form-control'

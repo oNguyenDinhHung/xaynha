@@ -21,3 +21,7 @@ $('form#new_<%= model_name %>').clear_previous_errors()
   $('#<%=table_id%>').DataTable().row.add(row).node().id = '<%=model_name%>_<%=obj_id%>';
   $('#<%=table_id%>').DataTable().draw( false );
 <% end %>
+<% if hoa_don ||= nil %>
+  $('#tong_tien_moi').text('<%= hoa_don.tong_tien %>')
+  $('#so_du_moi').text('<%= hoa_don.so_du %>')
+<% end %>

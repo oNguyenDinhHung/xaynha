@@ -5,7 +5,8 @@
         %tr
           %th Nhà cung cấp
           %th Người kí
-          %th Ngày
+          %th Thời gian
+          %th Tổng tiền
           %th Thanh toán
           %th Số dư
           %th Ghi chú
@@ -13,11 +14,12 @@
         %tr
           %td= @hoa_don.nha_cung_cap.ten
           %td= @hoa_don.nguoi_ki
-          %td= @hoa_don.ngay.strftime('%d/%m/%Y')
+          %td= @hoa_don.time
+          %td#tong_tien_moi= @hoa_don.tong_tien
           %td= @hoa_don.thanh_toan
-          %td= @hoa_don.so_du
+          %td#so_du_moi= @hoa_don.so_du
           %td= @hoa_don.note
-  -if @hoa_don.file?    
+  -if @hoa_don.file?
     %button#button_anh.btn.btn-primary Ẩn/HiệnẢnh
     #picture{ align: 'center', style: 'display: none' }
       = image_tag @hoa_don.file.url
@@ -34,6 +36,7 @@
           %th Vật liệu
           %th Giá
           %th Số lượng
+          %th Thành tiền
           %th Ghi chú
           %th
           %th

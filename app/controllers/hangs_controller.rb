@@ -6,13 +6,13 @@ class HangsController < ApplicationController
   def create
     @hang = Hang.new(hang_params)
     flash[:notice] = t 'app.flash.new_success' if @hang.save
-    render 'share/create', locals: { obj: @hang, attr_list: Hang::SHOW_ATTRS }
+    render 'share/create', locals: { obj: @hang, attr_list: Hang::SHOW_ATTRS, hoa_don: @hang.hoa_don }
   end
 
   def update
     @hang = Hang.find_by_id(params[:id])
     flash[:notice] = t 'app.flash.update_success' if @hang.update(hang_params)
-    render 'share/update', locals: { obj: @hang, attr_list: Hang::SHOW_ATTRS }
+    render 'share/update', locals: { obj: @hang, attr_list: Hang::SHOW_ATTRS, hoa_don: @hang.hoa_don }
   end
 
   def destroy
@@ -24,8 +24,9 @@ class HangsController < ApplicationController
       end
     else
       @hang = Hang.find_by_id(params[:id])
+      @hoa_don = @hang.hoa_don
       @hang.destroy if @hang
-      render 'share/destroy', locals: { obj: @hang }
+      render 'share/destroy', locals: { obj: @hang, hoa_don: @hoa_don }
     end
   end
 

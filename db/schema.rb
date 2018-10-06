@@ -15,8 +15,9 @@ ActiveRecord::Schema.define(version: 2018_10_06_144848) do
   create_table "hangs", force: :cascade do |t|
     t.integer "hoa_don_id"
     t.integer "vat_lieu_id"
-    t.float "gia"
-    t.float "so_luong"
+    t.float "gia", default: 0.0
+    t.float "so_luong", default: 0.0
+    t.float "thanh_tien", default: 0.0
     t.string "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -25,11 +26,12 @@ ActiveRecord::Schema.define(version: 2018_10_06_144848) do
   end
 
   create_table "hoa_dons", force: :cascade do |t|
-    t.date "ngay"
+    t.datetime "thoi_gian"
     t.integer "nha_cung_cap_id"
     t.string "nguoi_ki"
-    t.float "thanh_toan"
-    t.float "so_du"
+    t.float "tong_tien", default: 0.0
+    t.float "thanh_toan", default: 0.0
+    t.float "so_du", default: 0.0
     t.string "file"
     t.string "note"
     t.datetime "created_at", null: false

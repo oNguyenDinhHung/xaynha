@@ -8,7 +8,7 @@ $(document).on 'turbolinks:load',()->
     edit_modal_id: '#hoa_don-edit-modal'
     delete_path: '/hoa_dons/id'
     invisible_columns: [0, 2]
-    no_sort_columns: [8, 9, 10]
+    no_sort_columns: [9, 10, 11]
     get_id_from_row_data: (data)->
       return data[0]
 
@@ -18,7 +18,6 @@ $(document).on 'turbolinks:load',()->
     $(this).find('#hoa_don_nha_cung_cap_id').val('')
     $(this).find('#hoa_don_nguoi_ki').val('')
     $(this).find('#hoa_don_thanh_toan').val('')
-    $(this).find('#hoa_don_so_du').val('')
     $(this).find('#hoa_don_note').val('')
     $('.form-group.has-error').each ()->
       $('.help-block', $(this)).html('')
@@ -31,9 +30,8 @@ $(document).on 'turbolinks:load',()->
     $(this).find('#hoa_don_ngay').val(selected_row_data[1])
     $(this).find('#hoa_don_nha_cung_cap_id').val(selected_row_data[2])
     $(this).find('#hoa_don_nguoi_ki').val(selected_row_data[4])
-    $(this).find('#hoa_don_thanh_toan').val(selected_row_data[5])
-    $(this).find('#hoa_don_so_du').val(selected_row_data[6])
-    $(this).find('#hoa_don_note').val(selected_row_data[7])
+    $(this).find('#hoa_don_thanh_toan').val(selected_row_data[6])
+    $(this).find('#hoa_don_note').val(selected_row_data[8])
     $('.form-group.has-error').each ()->
       $('.help-block', $(this)).html('')
       $(this).removeClass('has-error')

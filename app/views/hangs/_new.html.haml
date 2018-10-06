@@ -13,7 +13,7 @@
               = f.input_field :hoa_don_id, collection: HoaDon.pluck(:id), class: 'form-control'
               .span.help-block
           = f.input :vat_lieu_id, label: 'Vật liệu' do
-            = f.input_field :vat_lieu_id, collection: VatLieu.pluck(:ten, :id), class: 'form-control'
+            = f.input_field :vat_lieu_id, collection: VatLieu.all.map{ |vl| ["#{vl.ten} #{vl.loai}", vl.id] }, class: 'form-control'
             .span.help-block
           = f.input :gia, label: 'Giá' do
             = f.input_field :gia, as: :float, class: 'form-control'

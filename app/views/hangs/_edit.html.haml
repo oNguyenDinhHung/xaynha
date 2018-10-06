@@ -8,7 +8,7 @@
         = simple_form_for :hang, url: hang_path(id: 0), method: :patch, :remote => true, html: { id: 'edit_hang', role: :form, 'data-model' => 'hang'} do |f|
           = f.input :hoa_don_id, as: :hidden
           = f.input :vat_lieu_id, label: 'Vật liệu' do
-            = f.input_field :vat_lieu_id, collection: VatLieu.pluck(:ten, :id), class: 'form-control', disabled: true
+            = f.input_field :vat_lieu_id, collection: VatLieu.all.map{ |vl| ["#{vl.ten} #{vl.loai}", vl.id] }, class: 'form-control', disabled: true
             .span.help-block
           = f.input :gia, label: 'Giá' do
             = f.input_field :gia, as: :float, class: 'form-control'

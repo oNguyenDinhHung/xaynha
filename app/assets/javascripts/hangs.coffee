@@ -8,7 +8,7 @@ $(document).on 'turbolinks:load',()->
     edit_modal_id: '#hang-edit-modal'
     delete_path: '/hangs/id'
     invisible_columns: [0, 2]
-    no_sort_columns: [7, 8]
+    no_sort_columns: [8, 9]
     get_id_from_row_data: (data)->
       return data[0]
 
@@ -29,8 +29,8 @@ $(document).on 'turbolinks:load',()->
     $(this).find('#hang_hoa_don_id').val(selected_row_data[1])
     $(this).find('#hang_vat_lieu_id').val(selected_row_data[2])
     $(this).find('#hang_gia').val(selected_row_data[4])
-    $(this).find('#hang_so_luong').val(selected_row_data[5])
-    $(this).find('#hang_note').val(selected_row_data[6])
+    $(this).find('#hang_so_luong').val(selected_row_data[5].split(' ')[0])
+    $(this).find('#hang_note').val(selected_row_data[7])
     $('.form-group.has-error').each ()->
       $('.help-block', $(this)).html('')
       $(this).removeClass('has-error')
