@@ -2,7 +2,3 @@
 <% table_id ||= model_name %>
 <% obj_id ||= obj.id %>
 $('table#<%=table_id%>').DataTable().row('tr#<%=model_name%>_<%=obj_id%>').remove().draw(false);
-<% if hoa_don ||= nil %>
-	$('#tong_tien_moi').text('<%= hoa_don.tong_tien %>')
-  $('#so_du_moi').text('<%= hoa_don.so_du %>')
-<% end %>

@@ -24,7 +24,3 @@ $('form#edit_<%= model_name %>').clear_previous_errors()
   $('#<%=table_id%>').DataTable().draw( false );
   $('#<%=table_id%>').DataTable().buttons('#edit, #destroy').nodes().addClass('disabled');
 <% end %>
-<% if hoa_don ||= nil%>
-  $('#tong_tien_moi').text('<%= hoa_don.tong_tien %>')
-  $('#so_du_moi').text('<%= hoa_don.so_du %>')
-<% end %>

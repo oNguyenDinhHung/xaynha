@@ -7,22 +7,20 @@ class HoaDon < ApplicationRecord
   validates :nguoi_ki, presence: { message: 'Người kí không thể để trống' }
   validates :nha_cung_cap_id, presence: { message: 'Nhà cung cấp không thể để trống' }
   delegate :ten, to: :nha_cung_cap, prefix: true
-  before_save :tinh_tong_tien
 
   def time
     thoi_gian.try(:strftime, '%d/%m/%Y %H:%M')
   end
 
   def tinh_tong_tien
-    self.tong_tien = Hang.where(hoa_don: self).sum(&:thanh_tien)
-    tinh_so_du
+    update(tong_tien: Hang.where(hoa_don: self).sum(&:thanh_tien))
   end
 
   def tinh_so_du
-    so_du = (thanh_toan || 0) - (tong_tien || 0)
-    HoaDon.where(nha_cung_cap_id: nha_cung_cap_id).each do |hd|
+    so_du = 0
+    HoaDon.where(nha_cung_cap_id: nha_cung_cap_id). order(:thoi_gian).each do |hd|
       so_du = so_du + (hd.thanh_toan||0) - (hd.tong_tien||0)
+      hd.update(so_du: so_du)
     end
-    self.so_du = so_du
   end
 end

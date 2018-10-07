@@ -5,28 +5,33 @@ class HoaDonsController < ApplicationController
 
   def create
     @hoa_don = HoaDon.new(hoa_don_params)
-    flash[:notice] = t 'app.flash.new_success' if @hoa_don.save
-    render 'share/create', locals: { obj: @hoa_don, attr_list: HoaDon::SHOW_ATTRS, show_link: true }
+    if @hoa_don.save
+      @hoa_don.tinh_tong_tien
+      @hoa_don.tinh_so_du
+    end
+    redirect_to hoa_dons_path
+    # render 'share/create', locals: { obj: @hoa_don.reload, attr_list: HoaDon::SHOW_ATTRS, show_link: true }
   end
 
   def update
     @hoa_don = HoaDon.find_by_id(params[:id])
-    flash[:notice] = t 'app.flash.update_success' if @hoa_don.update(hoa_don_params)
-    render 'share/update', locals: { obj: @hoa_don, attr_list: HoaDon::SHOW_ATTRS, show_link: true }
+    if @hoa_don.update(hoa_don_params)
+      @hoa_don.tinh_tong_tien
+      @hoa_don.tinh_so_du
+    end
+    redirect_to hoa_dons_path
+    # render 'share/update', locals: { obj: @hoa_don.reload, attr_list: HoaDon::SHOW_ATTRS, show_link: true }
   end
 
   def destroy
-    if params[:ids]
-      HoaDon.where(id: params[:ids]).destroy_all
-      data = { destroy_success: 'success' }
-      respond_to do |format|
-        format.json { render json: data }
-      end
-    else
-      @hoa_don = HoaDon.find_by_id(params[:id])
-      @hoa_don.destroy if @hoa_don
-      render 'share/destroy', locals: { obj: @hoa_don }
+    @hoa_don = HoaDon.find_by_id(params[:id])
+    if @hoa_don
+      @hoa_don.destroy
+      @hoa_don.tinh_tong_tien
+      @hoa_don.tinh_so_du
     end
+    redirect_to hoa_dons_path
+    # render 'share/destroy', locals: { obj: @hoa_don }
   end
 
   def show

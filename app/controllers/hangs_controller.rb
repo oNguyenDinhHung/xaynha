@@ -5,29 +5,38 @@ class HangsController < ApplicationController
 
   def create
     @hang = Hang.new(hang_params)
-    flash[:notice] = t 'app.flash.new_success' if @hang.save
-    render 'share/create', locals: { obj: @hang, attr_list: Hang::SHOW_ATTRS, hoa_don: @hang.hoa_don }
+    @hang.save
+    @hoa_don = @hang.hoa_don
+    if @hoa_don
+      @hoa_don.tinh_tong_tien
+      @hoa_don.tinh_so_du
+    end
+    redirect_back(fallback_location: hangs_path)
+    # render 'share/create', locals: { obj: @hang, attr_list: Hang::SHOW_ATTRS }
   end
 
   def update
     @hang = Hang.find_by_id(params[:id])
-    flash[:notice] = t 'app.flash.update_success' if @hang.update(hang_params)
-    render 'share/update', locals: { obj: @hang, attr_list: Hang::SHOW_ATTRS, hoa_don: @hang.hoa_don }
+    @hang.update(hang_params)
+    @hoa_don = @hang.hoa_don
+    if @hoa_don
+      @hoa_don.tinh_tong_tien
+      @hoa_don.tinh_so_du
+    end
+    redirect_back(fallback_location: hangs_path)
+    # render 'share/update', locals: { obj: @hang, attr_list: Hang::SHOW_ATTRS }
   end
 
   def destroy
-    if params[:ids]
-      Hang.where(id: params[:ids]).destroy_all
-      data = { destroy_success: 'success' }
-      respond_to do |format|
-        format.json { render json: data }
-      end
-    else
-      @hang = Hang.find_by_id(params[:id])
-      @hoa_don = @hang.hoa_don
-      @hang.destroy if @hang
-      render 'share/destroy', locals: { obj: @hang, hoa_don: @hoa_don }
+    @hang = Hang.find_by_id(params[:id])
+    @hoa_don = @hang.hoa_don
+    @hang.destroy if @hang
+    if @hoa_don.save
+      @hoa_don.tinh_tong_tien
+      @hoa_don.tinh_so_du
     end
+    redirect_back(fallback_location: hangs_path)
+    # render 'share/destroy', locals: { obj: @hang }
   end
 
   private
