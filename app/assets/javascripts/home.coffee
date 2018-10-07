@@ -174,5 +174,5 @@ jQuery ->
             $("#edit").removeClass("disabled")
           else
             $("#edit").addClass("disabled")
-
-
+  $('#vltt').DataTable()
+  $('#dnvl').DataTable()
