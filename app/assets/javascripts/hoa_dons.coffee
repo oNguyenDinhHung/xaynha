@@ -14,7 +14,6 @@ $(document).on 'turbolinks:load',()->
 
   $('#hoa_don-new-modal').on 'show', ()->
     $(this).modal('show')
-    $(this).find('#hoa_don_thoi_gian').val('')
     $(this).find('#hoa_don_nha_cung_cap_id').val('')
     $(this).find('#hoa_don_nguoi_ki').val('')
     $(this).find('#hoa_don_thanh_toan').val('')
@@ -27,7 +26,13 @@ $(document).on 'turbolinks:load',()->
     $(this).modal('show')
     form = $(this).find('form')
     form.attr('action', form.attr('action').replace('0', selected_row_data[0]))
-    $(this).find('#hoa_don_thoi_gian').val(selected_row_data[1])
+    date = selected_row_data[1].split(' ')[0].split('/')
+    time = selected_row_data[1].split(' ')[1].split(':')
+    $(this).find('#hoa_don_thoi_gian_1i').val(date[2])
+    $(this).find('#hoa_don_thoi_gian_2i').val(date[1])
+    $(this).find('#hoa_don_thoi_gian_3i').val(parseInt(date[0]))
+    $(this).find('#hoa_don_thoi_gian_4i').val(time[0])
+    $(this).find('#hoa_don_thoi_gian_5i').val(time[1])
     $(this).find('#hoa_don_nha_cung_cap_id').val(selected_row_data[2])
     $(this).find('#hoa_don_nguoi_ki').val(selected_row_data[4])
     $(this).find('#hoa_don_thanh_toan').val(selected_row_data[6])
