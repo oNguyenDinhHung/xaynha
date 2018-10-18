@@ -19,10 +19,12 @@
           %td= @hoa_don.thanh_toan
           %td= @hoa_don.so_du
           %td= @hoa_don.note
-  -if @hoa_don.file?
-    %button#button_anh.btn.btn-primary Ẩn/HiệnẢnh
-    #picture{ align: 'center', style: 'display: none' }
-      = image_tag @hoa_don.file.url
+.row
+  .col-lg-8.offset-lg-2
+    -if @hoa_don.file?
+      %button#button_anh.btn.btn-primary Ẩn/HiệnẢnh
+      #picture{ align: 'center', style: 'display: none' }
+        = image_tag @hoa_don.file.url, width: '100%'
 
 .row{style: 'margin-top: 50px'}
   .col-lg-10.offset-lg-1
