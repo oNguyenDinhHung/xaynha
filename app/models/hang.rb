@@ -4,6 +4,7 @@ class Hang < ApplicationRecord
   SHOW_ATTRS = %w(id hoa_don_id vat_lieu_id tenvatlieu gia soluong thanh_tien note)
   validates :hoa_don_id, presence: { message: 'Hóa đơn không thể để trống' }
   validates :vat_lieu_id, presence: { message: 'Vật liệu không thể để trống' }
+  validates :so_luong, presence: { message: 'Số lượng không thể để trống' }
   validates_uniqueness_of :gia, scope: %i[vat_lieu_id hoa_don_id], message: 'Loại hàng với giá này đã tồn tại'
   delegate :ten, to: :vat_lieu, prefix: true
   before_save :tinh_thanh_tien
