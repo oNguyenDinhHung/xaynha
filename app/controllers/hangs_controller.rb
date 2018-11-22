@@ -17,7 +17,7 @@ class HangsController < ApplicationController
 
   def update
     @hang = Hang.find_by_id(params[:id])
-    @hang.update(hang_params)
+    @hang.update(hang_params.delete_if{|k, v| %w(gia so_luong).include?(k) && v.blank?})
     @hoa_don = @hang.hoa_don
     if @hoa_don
       @hoa_don.tinh_tong_tien

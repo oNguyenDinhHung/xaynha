@@ -1,7 +1,8 @@
 class Hang < ApplicationRecord
+  include  ActionView::Helpers::NumberHelper
   belongs_to :hoa_don
   belongs_to :vat_lieu
-  SHOW_ATTRS = %w(id hoa_don_id vat_lieu_id tenvatlieu gia soluong thanh_tien note)
+  SHOW_ATTRS = %w(id hoa_don_id vat_lieu_id tenvatlieu gia_v soluong thanh_tien_v note)
   validates :hoa_don_id, presence: { message: 'Hóa đơn không thể để trống' }
   validates :vat_lieu_id, presence: { message: 'Vật liệu không thể để trống' }
   validates :so_luong, presence: { message: 'Số lượng không thể để trống' }
@@ -27,5 +28,13 @@ class Hang < ApplicationRecord
 
   def tenvatlieu
     "#{vat_lieu_ten} #{vat_lieu.loai}"
+  end
+
+  def thanh_tien_v
+    number_with_delimiter(thanh_tien)
+  end
+
+  def gia_v
+    number_with_delimiter(gia)
   end
 end

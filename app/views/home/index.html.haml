@@ -15,19 +15,19 @@
             %td= ncc.ten
             - if du > 0
               - tong_thua += du
-              %td{style: 'color: blue'}= "Thừa #{du}"
+              %td{style: 'color: blue'}= "Thừa #{number_with_delimiter(du)}"
             - elsif du < 0
               - tong_no += -du
-              %td{style: 'color: red'}= "Nợ #{-du}"
+              %td{style: 'color: red'}= "Nợ #{-number_with_delimiter(du)}"
             - else
               %td{style: 'color: green'}= 'Thanh toán xong'
-      %tfooter
+      %tfoot
         %tr
           %td
-          %td{style: 'color: blue; border: solid'}= "Tổng Thừa #{tong_thua}"
+          %td{style: 'color: blue; border: solid'}= "Tổng Thừa #{number_with_delimiter(tong_thua)}"
         %tr
           %td
-          %td{style: 'color: red; border: solid'}= "Tổng Nợ #{tong_no}"
+          %td{style: 'color: red; border: solid'}= "Tổng Nợ #{number_with_delimiter(tong_no)}"
   .col-lg-5
     %h1 Vật liệu tiêu thụ
     %table#vltt.table-striped.table-bordered{ width: '100%' }
@@ -37,15 +37,9 @@
           %th Số lượng
           %th Tổng tiền
       %tbody
-        - tong_tien_vl = 0
         - @vls.each do |k, v|
-          - tong_tien_vl += (v[:tt] || 0)
           %tr
             %td= k
             %td= "#{v[:sl]} #{v[:dv]}"
-            %td= v[:tt]
-      %tfooter
-        %tr
-          %td
-          %td
-          %td{style: 'color: blue; border: solid'}= "Tổng #{tong_tien_vl}"
+            %td= number_with_delimiter(v[:tt], delimiter: ',')
+    #tongtien{style: 'color: blue; border: solid; font-weight: bold', align: 'center'}

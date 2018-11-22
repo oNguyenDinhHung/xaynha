@@ -174,5 +174,33 @@ jQuery ->
             $("#edit").removeClass("disabled")
           else
             $("#edit").addClass("disabled")
-  $('#vltt').DataTable()
-  $('#dnvl').DataTable()
+  vltt_table = $('#vltt').DataTable({
+    scrollX: true
+    pagingType: "full_numbers"
+    language:
+      lengthMenu: "Hiển thi _MENU_ dòng trên một trang"
+      zeroRecords: "Không tìm thấy dữ liệu"
+      info: "Hiển thị trang _PAGE_ trong số _PAGES_ trang"
+      infoEmpty: "Không có dữ liệu"
+      infoFiltered: "(đã lọc từ tổng cộng _MAX_ dòng)"
+      search: "Tìm kiếm:"
+      processing: "Đang xử lí..."
+      paginate:
+        first: "Đầu tiên"
+        previous: "Trước"
+        next: "Tiếp"
+        last: "Cuối cùng"
+    scrollCollapse: true
+    pageLength: 100
+    order: 0
+    select: {
+      style: 'single'
+    }
+    drawCallback: (settings)->
+      sum = 0
+      $('#vltt > tbody > tr').each (index, value)->
+        text = $(this).find('td:eq(2)').html()
+        if text != undefined
+          sum += parseFloat(text.replace(/,/g, ''))
+      $('#tongtien').html('Tổng ' + sum.toLocaleString('en') + 'VND')
+  })
