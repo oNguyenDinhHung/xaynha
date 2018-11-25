@@ -10,7 +10,7 @@ class HoaDon < ApplicationRecord
   delegate :ten, to: :nha_cung_cap, prefix: true
 
   def time
-    thoi_gian.try(:strftime, '%d/%m/%Y %H:%M')
+    thoi_gian.try(:strftime, '%Y/%m/%d %H:%M')
   end
 
   def tinh_tong_tien
