@@ -27,7 +27,6 @@ class HoaDonsController < ApplicationController
     @hoa_don = HoaDon.find_by_id(params[:id])
     if @hoa_don
       @hoa_don.destroy
-      @hoa_don.tinh_tong_tien
       @hoa_don.tinh_so_du
     end
     redirect_to hoa_dons_path
