@@ -1,6 +1,7 @@
 class HangsController < ApplicationController
 	def index
-    @hangs = Hang.all
+    @hangs = Hang.includes(:hoa_don, :vat_lieu)
+    @search_params = params[:search_params]
   end
 
   def create

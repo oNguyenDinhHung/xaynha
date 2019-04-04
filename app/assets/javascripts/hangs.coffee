@@ -9,6 +9,7 @@ $(document).on 'turbolinks:load',()->
     delete_path: '/hangs/id'
     invisible_columns: [0, 2]
     no_sort_columns: [8, 9]
+    search_params: $('#search_params').text()
     get_id_from_row_data: (data)->
       return data[0]
 
