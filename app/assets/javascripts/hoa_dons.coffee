@@ -9,6 +9,7 @@ $(document).on 'turbolinks:load',()->
     delete_path: '/hoa_dons/id'
     invisible_columns: [0, 2]
     no_sort_columns: [9, 10, 11]
+    search_params: $('#search_params').text()
     get_id_from_row_data: (data)->
       return data[0]
 

@@ -9,10 +9,10 @@
 
       %tbody
         - tong_thua = tong_no = 0
-        - NhaCungCap.all.each do |ncc|
-          - du = ncc.hoa_dons.order(:thoi_gian).last.try(:so_du) || 0
+        - NhaCungCap.includes(:hoa_dons).each do |ncc|
+          - du = ncc.hoa_dons.sort_by(&:thoi_gian).last.try(:so_du) || 0
           %tr
-            %td= ncc.ten
+            %td= link_to ncc.ten, hoa_dons_path(search_params: ncc.ten)
             - if du > 0
               - tong_thua += du
               %td{style: 'color: blue'}= "Thừa #{number_with_delimiter(du)}"
@@ -39,7 +39,7 @@
       %tbody
         - @vls.each do |k, v|
           %tr
-            %td= k
+            %td= link_to k, hangs_path(search_params: k)
             %td= "#{v[:sl]} #{v[:dv]}"
             %td= number_with_delimiter(v[:tt], delimiter: ',')
     #tongtien{style: 'color: blue; border: solid; font-weight: bold', align: 'center'}

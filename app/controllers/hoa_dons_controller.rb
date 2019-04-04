@@ -1,6 +1,7 @@
 class HoaDonsController < ApplicationController
   def index
-    @hoa_dons = HoaDon.all
+    @hoa_dons = HoaDon.includes(:nha_cung_cap)
+    @search_params = params[:search_params]
   end
 
   def create
