@@ -26,6 +26,30 @@
               %span{style: 'font-size: 3.5rem; color: blue; border: solid'}= "Tổng Thừa #{number_with_delimiter(tong_thua)}"
               %br
               %span{style: 'font-size: 3.5rem; color: red; border: solid'}= "Tổng Nợ #{number_with_delimiter(tong_no)}"
+      %br
+      %h1 Nợ tiền vay
+      %table.table-striped.table-bordered{ width: '100%' }
+        %thead
+        %tbody
+          - tong_vay = tong_no = 0
+          - KhoanVay.all.each do |kv|
+            - tong_vay += kv.so_tien_vay
+            - tong_no += kv.tien_con_no
+            %tr
+              %td
+                %span{style: 'font-size: 6.5rem'}= kv.nguoi_cho_vay
+                %br
+                  %h1{style: 'color: blue'}= "Vay #{number_with_delimiter(kv.so_tien_vay)}"
+                - if kv.tien_con_no > 0
+                  %h1{style: 'color: red'}= "Nợ #{number_with_delimiter(kv.tien_con_no)}"
+                - else
+                  %h1{style: 'color: green'}= 'Thanh toán xong'
+        %tfoot
+          %tr
+            %td
+              %span{style: 'font-size: 3.5rem; color: blue; border: solid'}= "Tổng Thừa #{number_with_delimiter(tong_vay)}"
+              %br
+              %span{style: 'font-size: 3.5rem; color: red; border: solid'}= "Tổng Nợ #{number_with_delimiter(tong_no)}"
     .col-lg-5
       %h1 Vật liệu tiêu thụ
       %table#vltt.table-striped.table-bordered{ width: '100%' }
@@ -72,6 +96,34 @@
           %tr
             %td
             %td{style: 'color: red; border: solid'}= "Tổng Nợ #{number_with_delimiter(tong_no)}"
+      %spacer
+      %h1 Nợ tiền vay
+      %table#dnvl.table-striped.table-bordered{ width: '100%' }
+        %thead
+          %tr
+            %th Người cho vay
+            %th Số tiền vay
+            %th Tiền còn nợ
+
+        %tbody
+          - tong_vay = tong_no = 0
+          - KhoanVay.all.each do |kv|
+            - tong_vay += kv.so_tien_vay
+            - tong_no += kv.tien_con_no
+            %tr
+              %td= kv.nguoi_cho_vay
+              %td{style: 'color: blue'}= "#{number_with_delimiter(kv.so_tien_vay)}"
+              - if kv.tien_con_no > 0
+                %td{style: 'color: red'}= "#{number_with_delimiter(kv.tien_con_no)}"
+              - else
+                %td{style: 'color: green'}= 'Thanh toán xong'
+        %tfoot
+          %tr
+            %td
+            %td{style: 'color: blue; border: solid'}= "Tổng vay #{number_with_delimiter(tong_vay)}"
+          %tr
+            %td
+            %td{style: 'color: red; border: solid'}= "Tổng nợ #{number_with_delimiter(tong_no)}"
     .col-lg-5
       %h1 Vật liệu tiêu thụ
       %table#vltt.table-striped.table-bordered{ width: '100%' }

@@ -1,0 +1,2 @@
+module TraNosHelper
+end

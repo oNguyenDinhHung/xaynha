@@ -1,0 +1,12 @@
+.row
+  .col-md-6.offset-md-3
+    %h1= "Người cho vay: #{@khoan_vay.nguoi_cho_vay}"
+    %h1= "Người vay: #{@khoan_vay.nguoi_vay}"
+    = simple_form_for @tra_no do |f|
+      = f.input :khoan_vay_id, as: :hidden
+      = f.input :so_tien, label: 'Số tiền' do
+        = f.input_field :so_tien, class: 'form-control'
+        .span.help-block
+      = f.input :note, label: 'Ghi chú' do
+        = f.input_field :note, class: 'form-control'
+      = f.button :submit, 'Trả nợ', class: 'btn btn-success'

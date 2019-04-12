@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  khoan_vay: one
+  so_tien: 1
+  note: MyString
+
+two:
+  khoan_vay: two
+  so_tien: 1
+  note: MyString

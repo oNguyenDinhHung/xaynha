@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-lg-10 offset-lg-1">
+    <table id='khoan_vay' class='table-striped table-bordered table-hover' cellspacing= '0' width= '100%'>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Người cho vay</th>
+          <th>Người vay</th>
+          <th>Số tiền</th>
+          <th>Tiền còn nợ</th>
+          <th>Ghi chú</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @khoan_vays %>
+      </tbody>
+    </table>
+    <%= render 'new' %>
+    <%= render 'edit' %>
+  </div>
+</div>

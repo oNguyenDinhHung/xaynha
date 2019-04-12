@@ -1,0 +1,5 @@
+%tr
+  %td= tra_no.so_tien
+  %td= tra_no.created_at.strftime('%d/%m/%Y')
+  %td= tra_no.note
+  %td= link_to 'Xóa', tra_no, method: :delete, data: { confirm: 'Are you sure ?' }

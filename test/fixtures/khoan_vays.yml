@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nguoi_cho_vay: MyString
+  nguoi_vay: MyString
+  so_tien_vay: 1
+  tien_con_no: MyString
+  integer: MyString
+  note: MyString
+
+two:
+  nguoi_cho_vay: MyString
+  nguoi_vay: MyString
+  so_tien_vay: 1
+  tien_con_no: MyString
+  integer: MyString
+  note: MyString

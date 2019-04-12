@@ -1,0 +1,20 @@
+.modal#khoan_vay-new-modal{tabindex:-1, role: :dialog, 'aria-labelledby'=>"myModalLabel", 'aria-hidden'=>"true"}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %h4.modal-title#myModalLabel Tạo khoản vay mới
+        %button.close{type: :button, 'data-dismiss'=>"modal", 'aria-hidden'=>"true"} &times;
+      .modal-body
+        = simple_form_for :khoan_vay, url: khoan_vays_path, method: :post, :remote => true, html: { id: 'new_khoan_vay', role: :form, 'data-model' => 'khoan_vay'} do |f|
+          = f.input :nguoi_cho_vay, label: 'Người cho vay' do
+            = f.input_field :nguoi_cho_vay, class: 'form-control'
+            .span.help-block
+          = f.input :nguoi_vay, label: 'Người vay' do
+            = f.input_field :nguoi_vay, class: 'form-control'
+            .span.help-block
+          = f.input :so_tien_vay, label: 'Số tiền vay' do
+            = f.input_field :so_tien_vay, class: 'form-control'
+            .span.help-block
+          = f.input :note, label: 'Ghi chú' do
+            = f.input_field :note, class: 'form-control'
+          = f.button :submit, 'Tạo', class: 'btn btn-success'

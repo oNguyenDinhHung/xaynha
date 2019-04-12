@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_06_144848) do
+ActiveRecord::Schema.define(version: 2019_04_12_170244) do
 
   create_table "hangs", force: :cascade do |t|
     t.integer "hoa_don_id"
@@ -39,12 +39,31 @@ ActiveRecord::Schema.define(version: 2018_10_06_144848) do
     t.index ["nha_cung_cap_id"], name: "index_hoa_dons_on_nha_cung_cap_id"
   end
 
+  create_table "khoan_vays", force: :cascade do |t|
+    t.string "nguoi_cho_vay"
+    t.string "nguoi_vay"
+    t.integer "so_tien_vay"
+    t.integer "tien_con_no"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "nha_cung_caps", force: :cascade do |t|
     t.string "ten"
     t.string "sodienthoai"
     t.string "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tra_nos", force: :cascade do |t|
+    t.integer "khoan_vay_id"
+    t.integer "so_tien"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["khoan_vay_id"], name: "index_tra_nos_on_khoan_vay_id"
   end
 
   create_table "vat_lieus", force: :cascade do |t|
