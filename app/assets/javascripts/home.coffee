@@ -192,7 +192,6 @@ jQuery ->
         last: "Cuối cùng"
     scrollCollapse: true
     pageLength: 100
-    order: 0
     select: {
       style: 'single'
     }
