@@ -1,45 +1,89 @@
-.row
-  .col-lg-5.offset-lg-1
-    %h1 Dư nợ vật liệu
-    %table#dnvl.table-striped.table-bordered{ width: '100%' }
-      %thead
-        %tr
-          %th Nhà cung cấp
-          %th Tình trạng
+- if @device_type == 'smartphone'
+  .row
+    .col-lg-5.offset-lg-1
+      %h1 Dư nợ vật liệu
+      %table.table-striped.table-bordered{ width: '100%' }
+        %thead
+        %tbody
+          - tong_thua = tong_no = 0
+          - NhaCungCap.includes(:hoa_dons).each do |ncc|
+            - du = ncc.hoa_dons.sort_by(&:thoi_gian).last.try(:so_du) || 0
+            %tr
+              %td
+                %span{style: 'font-size: 6.5rem'}= link_to ncc.ten, hoa_dons_path(search_params: ncc.ten)
+                %br
+                - if du > 0
+                  - tong_thua += du
+                  %h1{style: 'color: blue'}= "Thừa #{number_with_delimiter(du)}"
+                - elsif du < 0
+                  - tong_no += -du
+                  %h1{style: 'color: red'}= "Nợ #{-number_with_delimiter(du)}"
+                - else
+                  %h1{style: 'color: green'}= 'Thanh toán xong'
+        %tfoot
+          %tr
+            %td
+              %span{style: 'font-size: 3.5rem; color: blue; border: solid'}= "Tổng Thừa #{number_with_delimiter(tong_thua)}"
+              %br
+              %span{style: 'font-size: 3.5rem; color: red; border: solid'}= "Tổng Nợ #{number_with_delimiter(tong_no)}"
+    .col-lg-5
+      %h1 Vật liệu tiêu thụ
+      %table#vltt.table-striped.table-bordered{ width: '100%' }
+        %thead
+          %tr
+            %th Vật liệu
+            %th Số lượng
+            %th Tổng tiền
+        %tbody
+          - @vls.each do |k, v|
+            %tr
+              %td= link_to k, hangs_path(search_params: k)
+              %td= "#{v[:sl]} #{v[:dv]}"
+              %td= number_with_delimiter(v[:tt], delimiter: ',')
+      #tongtien{style: 'color: blue; border: solid; font-weight: bold', align: 'center'}
+- else
+  .row
+    .col-lg-5.offset-lg-1
+      %h1 Dư nợ vật liệu
+      %table#dnvl.table-striped.table-bordered{ width: '100%' }
+        %thead
+          %tr
+            %th Nhà cung cấp
+            %th Tình trạng
 
-      %tbody
-        - tong_thua = tong_no = 0
-        - NhaCungCap.includes(:hoa_dons).each do |ncc|
-          - du = ncc.hoa_dons.sort_by(&:thoi_gian).last.try(:so_du) || 0
+        %tbody
+          - tong_thua = tong_no = 0
+          - NhaCungCap.includes(:hoa_dons).each do |ncc|
+            - du = ncc.hoa_dons.sort_by(&:thoi_gian).last.try(:so_du) || 0
+            %tr
+              %td= link_to ncc.ten, hoa_dons_path(search_params: ncc.ten)
+              - if du > 0
+                - tong_thua += du
+                %td{style: 'color: blue'}= "Thừa #{number_with_delimiter(du)}"
+              - elsif du < 0
+                - tong_no += -du
+                %td{style: 'color: red'}= "Nợ #{-number_with_delimiter(du)}"
+              - else
+                %td{style: 'color: green'}= 'Thanh toán xong'
+        %tfoot
           %tr
-            %td= link_to ncc.ten, hoa_dons_path(search_params: ncc.ten)
-            - if du > 0
-              - tong_thua += du
-              %td{style: 'color: blue'}= "Thừa #{number_with_delimiter(du)}"
-            - elsif du < 0
-              - tong_no += -du
-              %td{style: 'color: red'}= "Nợ #{-number_with_delimiter(du)}"
-            - else
-              %td{style: 'color: green'}= 'Thanh toán xong'
-      %tfoot
-        %tr
-          %td
-          %td{style: 'color: blue; border: solid'}= "Tổng Thừa #{number_with_delimiter(tong_thua)}"
-        %tr
-          %td
-          %td{style: 'color: red; border: solid'}= "Tổng Nợ #{number_with_delimiter(tong_no)}"
-  .col-lg-5
-    %h1 Vật liệu tiêu thụ
-    %table#vltt.table-striped.table-bordered{ width: '100%' }
-      %thead
-        %tr
-          %th Vật liệu
-          %th Số lượng
-          %th Tổng tiền
-      %tbody
-        - @vls.each do |k, v|
+            %td
+            %td{style: 'color: blue; border: solid'}= "Tổng Thừa #{number_with_delimiter(tong_thua)}"
           %tr
-            %td= link_to k, hangs_path(search_params: k)
-            %td= "#{v[:sl]} #{v[:dv]}"
-            %td= number_with_delimiter(v[:tt], delimiter: ',')
-    #tongtien{style: 'color: blue; border: solid; font-weight: bold', align: 'center'}
+            %td
+            %td{style: 'color: red; border: solid'}= "Tổng Nợ #{number_with_delimiter(tong_no)}"
+    .col-lg-5
+      %h1 Vật liệu tiêu thụ
+      %table#vltt.table-striped.table-bordered{ width: '100%' }
+        %thead
+          %tr
+            %th Vật liệu
+            %th Số lượng
+            %th Tổng tiền
+        %tbody
+          - @vls.each do |k, v|
+            %tr
+              %td= link_to k, hangs_path(search_params: k)
+              %td= "#{v[:sl]} #{v[:dv]}"
+              %td= number_with_delimiter(v[:tt], delimiter: ',')
+      #tongtien{style: 'color: blue; border: solid; font-weight: bold', align: 'center'}
