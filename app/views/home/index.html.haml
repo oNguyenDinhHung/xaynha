@@ -12,6 +12,8 @@
               %td
                 %span{style: 'font-size: 6.5rem'}= link_to ncc.ten, hoa_dons_path(search_params: ncc.ten)
                 %br
+                %span{style: 'font-size: 5.5rem'}= link_to number_with_delimiter(ncc.hoa_dons.sum(&:tong_tien)), root_path(nha_cung_cap_id: ncc.id)
+                %br
                 - if du > 0
                   - tong_thua += du
                   %h1{style: 'color: blue'}= "Thừa #{number_with_delimiter(du)}"
@@ -73,6 +75,7 @@
         %thead
           %tr
             %th Nhà cung cấp
+            %th Tổng tiền
             %th Tình trạng
 
         %tbody
@@ -81,6 +84,7 @@
             - du = ncc.hoa_dons.sort_by(&:thoi_gian).last.try(:so_du) || 0
             %tr
               %td= link_to ncc.ten, hoa_dons_path(search_params: ncc.ten)
+              %td= link_to number_with_delimiter(ncc.hoa_dons.sum(&:tong_tien)), root_path(nha_cung_cap_id: ncc.id)
               - if du > 0
                 - tong_thua += du
                 %td{style: 'color: blue'}= "Thừa #{number_with_delimiter(du)}"

@@ -174,6 +174,7 @@ jQuery ->
             $("#edit").removeClass("disabled")
           else
             $("#edit").addClass("disabled")
+$(document).on 'turbolinks:load', () ->
   vltt_table = $('#vltt').DataTable({
     scrollX: true
     pagingType: "full_numbers"
