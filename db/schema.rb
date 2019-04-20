@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_12_170244) do
+ActiveRecord::Schema.define(version: 2019_04_20_155113) do
 
   create_table "hangs", force: :cascade do |t|
     t.integer "hoa_don_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2019_04_12_170244) do
     t.string "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "bot"
     t.index ["nha_cung_cap_id"], name: "index_hoa_dons_on_nha_cung_cap_id"
   end
 

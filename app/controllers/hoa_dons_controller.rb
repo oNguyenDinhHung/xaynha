@@ -35,12 +35,12 @@ class HoaDonsController < ApplicationController
   end
 
   def show
-    @hoa_don = HoaDon.find(params[:id])
+    @hoa_don = HoaDon.includes(:nha_cung_cap).find(params[:id])
   end
 
   private
 
     def hoa_don_params
-      params.require(:hoa_don).permit(:thoi_gian, :nha_cung_cap_id, :nguoi_ki, :thanh_toan, :note, :file)
+      params.require(:hoa_don).permit(:thoi_gian, :nha_cung_cap_id, :nguoi_ki, :thanh_toan, :bot, :note, :file)
     end
 end

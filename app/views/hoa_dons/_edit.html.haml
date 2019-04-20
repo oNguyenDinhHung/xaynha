@@ -18,6 +18,9 @@
           = f.input :thanh_toan, label: 'Thanh toán' do
             = f.input_field :thanh_toan, as: :float, class: 'form-control'
             .span.help-block
+          = f.input :bot, label: 'Tiền bớt' do
+            = f.input_field :bot, as: :float, class: 'form-control'
+            .span.help-block
           = f.input :note, label: 'Ghi chú' do
             = f.input_field :note, class: 'form-control'
           = f.input :file, label: 'Ảnh' do

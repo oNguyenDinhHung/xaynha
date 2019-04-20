@@ -4,7 +4,7 @@ class HoaDon < ApplicationRecord
   has_many :hangs, dependent: :destroy
   belongs_to :nha_cung_cap
   NGUOI_KIS = %w(Bố Mẹ Hùng Hân Ông)
-  SHOW_ATTRS = %w(id time nha_cung_cap_id nha_cung_cap_ten nguoi_ki tong_tien_v thanh_toan_v so_du_v note)
+  SHOW_ATTRS = %w(id time nha_cung_cap_id nha_cung_cap_ten nguoi_ki tong_tien_v thanh_toan_v bot so_du_v note)
   validates :nguoi_ki, presence: { message: 'Người kí không thể để trống' }
   validates :nha_cung_cap_id, presence: { message: 'Nhà cung cấp không thể để trống' }
   delegate :ten, to: :nha_cung_cap, prefix: true
@@ -20,7 +20,7 @@ class HoaDon < ApplicationRecord
   def tinh_so_du
     so_du = 0
     HoaDon.where(nha_cung_cap_id: nha_cung_cap_id). order(:thoi_gian).each do |hd|
-      so_du = so_du + (hd.thanh_toan||0) - (hd.tong_tien||0)
+      so_du = so_du + (hd.thanh_toan||0) + (hd.bot||0) - (hd.tong_tien||0)
       hd.update(so_du: so_du)
     end
   end
