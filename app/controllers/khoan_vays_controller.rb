@@ -1,4 +1,5 @@
 class KhoanVaysController < ApplicationController
+  before_action :check_admin
   def index
     @khoan_vays = KhoanVay.all
   end
@@ -32,5 +33,9 @@ class KhoanVaysController < ApplicationController
 
     def khoan_vay_params
       params.require(:khoan_vay).permit(:nguoi_cho_vay, :nguoi_vay, :so_tien_vay, :tien_con_no, :note)
+    end
+
+    def check_admin
+      redirect_to root_path unless current_user.role == 'admin'
     end
 end

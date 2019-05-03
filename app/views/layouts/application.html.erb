@@ -13,8 +13,9 @@
   </head>
 
   <body>
-    <%= render 'layouts/navbar' %>
+    <%= render 'layouts/navbar' if user_signed_in? %>
     <span id="search_params" hidden="true"><%= @search_params %></span>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
