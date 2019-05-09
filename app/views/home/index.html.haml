@@ -66,7 +66,7 @@
             %tr
               %td= link_to k, hangs_path(search_params: k)
               %td= "#{v[:sl]} #{v[:dv]}"
-              %td= number_with_delimiter(v[:tt], delimiter: ',')
+              %td= number_with_delimiter(v[:tt])
       #tongtien{style: 'color: blue; border: solid; font-weight: bold', align: 'center'}
 - else
   .row
@@ -143,5 +143,5 @@
             %tr
               %td= link_to k, hangs_path(search_params: k)
               %td= "#{v[:sl]} #{v[:dv]}"
-              %td= number_with_delimiter(v[:tt], delimiter: ',')
+              %td= number_with_delimiter(v[:tt])
       #tongtien{style: 'color: blue; border: solid; font-weight: bold', align: 'center'}

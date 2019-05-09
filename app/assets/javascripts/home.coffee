@@ -201,6 +201,6 @@ $(document).on 'turbolinks:load', () ->
       $('#vltt > tbody > tr').each (index, value)->
         text = $(this).find('td:eq(2)').html()
         if text != undefined
-          sum += parseFloat(text.replace(/,/g, ''))
-      $('#tongtien').html('Tổng ' + sum.toLocaleString('en') + 'VND')
+          sum += parseFloat(text.replace(/\./g, ''))
+      $('#tongtien').html('Tổng ' + sum.toLocaleString('en').replace(/,/g, '.') + 'VND')
   })

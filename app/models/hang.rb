@@ -17,7 +17,7 @@ class Hang < ApplicationRecord
   end
 
   def tinh_thanh_tien
-    self.thanh_tien = gia * so_luong
+    self.thanh_tien = (gia * so_luong).ceil
   end
 
   def cap_nhat_hoa_don
